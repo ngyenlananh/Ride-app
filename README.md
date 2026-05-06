@@ -18,11 +18,11 @@
 
 Dự án tập trung vào việc làm chủ các kỹ thuật xử lý dữ liệu nền tảng trong Flutter & Dart:
 
-✅ Variables: Quản lý biến đa kiểu dữ liệu (String, int, double).
+**✅ Variables** :  Quản lý biến đa kiểu dữ liệu (String, int, double).
 
-✅ Collections: Tổ chức dữ liệu phức tạp bằng List và Map.
+**✅ Collections**: Tổ chức dữ liệu phức tạp bằng List và Map.
 
-✅ UI Rendering: Hiển thị dữ liệu từ Collections lên giao diện người dùng bằng các Widget chuyên dụng.
+**✅ UI Rendering**: Hiển thị dữ liệu từ Collections lên giao diện người dùng bằng các Widget chuyên dụng.
 
 **🛠️ CHI TIẾT KỸ THUẬT TRIỂN KHAI**
 
