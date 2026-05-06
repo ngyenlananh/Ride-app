@@ -55,9 +55,12 @@ Bảng dịch vụ: Sử dụng Row kết hợp Expanded để tạo bố cục 
 **📂 CẤU TRÚC THƯ MỤC DỰ ÁN**
 
 Plaintext
+
 **📂 CLINIC_AI_MANAGER**
+
  ┣ 📂 lib
- ┃ ┗ 📜 main.dart         # 🧩 File thực thi chính (Biến, Dữ liệu, UI)
+ 
+ ┃ ┗ 📜 main.dart    # 🧩 File thực thi chính (Biến, Dữ liệu, UI)
  ┣ 📂 assets              # 🖼️ Tài nguyên hình ảnh, Icons
  ┣ 📜 pubspec.yaml        # ⚙️ Cấu hình Dependency
  ┗ 📜 README.md           # 📖 Tài liệu hướng dẫn dự án
