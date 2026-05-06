@@ -1,170 +1,81 @@
-# Ride-app
-# 🚗 **Ride-Sharing System Design (Uber/Lyft Clone)**
+🏥 CLINIC AI MANAGER - PHẦN MỀM QUẢN LÝ PHÒNG KHÁM THÔNG MINH
+1. Tổng quan dự án
+CLINIC AI MANAGER là hệ thống quản lý phòng khám tích hợp trí tuệ nhân tạo, giúp tối ưu hóa quy trình tiếp đón bệnh nhân, sắp xếp lịch khám và hỗ trợ chẩn đoán. Dự án được thực hiện bởi Nhóm 03 lớp N03 - Đại học Phenikaa.
 
-## 1️⃣ **Functional Requirements**  
-- **User Registration & Authentication** (Drivers & Riders)  
-- **Ride Booking** (Search for nearby drivers & request a ride)  
-- **Real-time Location Tracking** (Driver & Rider updates)  
-- **Matching Algorithm** (Assigning drivers to riders)  
-- **Pricing Calculation** (Dynamic surge pricing)  
-- **Payment Processing** (Credit cards, wallets, etc.)  
-- **Rating & Review System** (For drivers & riders)  
-- **Ride History & Analytics** (Trip details, earnings, reports)  
+2. Thông tin nhóm thực hiện
+Lớp: N03 - Trường Đại học Phenikaa.
 
----
+Nhóm: 03.
 
-## 2️⃣ **Non-Functional Requirements**  
-- **Scalability** – Handle millions of concurrent users.  
-- **Low Latency** – Real-time updates for drivers and riders.  
-- **High Availability** – The system should be resilient and fault-tolerant.  
-- **Security & Privacy** – Protect sensitive user data and payment info.  
-- **Data Consistency** – Maintain accurate ride status across services.  
-- **Logging & Monitoring** – Track ride status, payments, and failures.  
+Thành viên:
 
----
+Nguyễn Thị Lan Anh (Trưởng nhóm - SV ngành Công nghệ thông tin).
 
-## 3️⃣ **Back-of-the-Envelope Estimation**  
-🔹 **Assumptions**:  
-- 50 million monthly active users  
-- 10 million daily rides  
-- Average ride duration: **20 minutes**  
-- 1.5x replication factor for fault tolerance  
-- 1 request/sec per active user → 50M requests/day  
-- Storage needed for ride history (5 years)  
+Dương Kim Chi.
 
-**Storage Estimation:**  
-- Each ride record ≈ 1KB  
-- **10M rides/day × 1KB = 10GB/day**  
-- **10GB/day × 365 × 5 years = ~18TB**  
+Quang.
 
----
+3. Mục tiêu bài thực hành số 02
+Trọng tâm của giai đoạn này là xây dựng nền tảng dữ liệu tĩnh và giao diện hiển thị cơ bản trong Flutter:
 
-## 4️⃣ **Database Design**  
-### 🚗 **Tables and Schema**  
-#### **Users Table**  
-```sql
-CREATE TABLE users (
-    id UUID PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
-    phone VARCHAR(20),
-    role ENUM('rider', 'driver'),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+Quản lý biến: Khai báo và sử dụng các kiểu dữ liệu cơ bản trong main.dart.
 
-#### **Drivers Table**  
-```sql
-CREATE TABLE drivers (
-    id UUID PRIMARY KEY,
-    user_id UUID REFERENCES users(id),
-    vehicle_id UUID REFERENCES vehicles(id),
-    rating FLOAT DEFAULT 5.0,
-    current_location POINT,
-    status ENUM('available', 'on_trip', 'offline') DEFAULT 'available'
-);
-```
+Cấu trúc dữ liệu: Sử dụng Collections (List, Map) để tổ chức dữ liệu bệnh nhân và lịch khám.
 
-#### **Rides Table**  
-```sql
-CREATE TABLE rides (
-    id UUID PRIMARY KEY,
-    rider_id UUID REFERENCES users(id),
-    driver_id UUID REFERENCES users(id),
-    start_location POINT,
-    end_location POINT,
-    status ENUM('requested', 'accepted', 'ongoing', 'completed', 'cancelled'),
-    fare DECIMAL(10,2),
-    started_at TIMESTAMP,
-    completed_at TIMESTAMP
-);
-```
+Xây dựng giao diện (UI): Hiển thị dữ liệu từ Collections lên màn hình ứng dụng thông qua các Flutter Widgets như Column, Row, Container, và Text.
 
-#### **Payments Table**  
-```sql
-CREATE TABLE payments (
-    id UUID PRIMARY KEY,
-    ride_id UUID REFERENCES rides(id),
-    user_id UUID REFERENCES users(id),
-    amount DECIMAL(10,2),
-    status ENUM('pending', 'completed', 'failed'),
-    payment_method ENUM('card', 'wallet', 'cash'),
-    transaction_id VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+4. Chi tiết kỹ thuật triển khai
+4.1. Khai báo biến (Variables)
+Hệ thống sử dụng các biến định danh cơ bản để mô tả ngữ cảnh phòng khám:
 
----
+tenPhongKham: Tên đơn vị quản lý.
 
-## 5️⃣ **API Design**
-### 🏠 **User APIs**
-- **Register Rider**: `POST /api/users/register`
-- **Register Driver**: `POST /api/drivers/register`
-- **Login**: `POST /api/auth/login`
-- **Update Location**: `PUT /api/drivers/location`
+nhomThucHien: Thông tin nhóm phát triển.
 
-### 🚖 **Ride APIs**
-- **Request Ride**: `POST /api/rides/request`
-- **Accept Ride**: `POST /api/rides/{ride_id}/accept`
-- **Complete Ride**: `POST /api/rides/{ride_id}/complete`
-- **Cancel Ride**: `POST /api/rides/{ride_id}/cancel`
+idBacSi, tenBacSi, chuyenKhoa: Thông tin định danh nhân sự trực ca.
 
-### 💳 **Payment APIs**
-- **Make Payment**: `POST /api/payments/pay`
-- **Check Payment Status**: `GET /api/payments/{payment_id}`
+4.2. Quản lý dữ liệu bằng Collections
+Dữ liệu được tổ chức để mô phỏng thực tế hoạt động của phòng khám:
 
----
+Map thongTinBenhNhan: Chứa thông tin chi tiết của một bệnh nhân đang được xử lý (id, tên, tình trạng lâm sàng, và kết quả chẩn đoán từ AI).
 
-## 6️⃣ **High-Level Components**  
-1. **API Gateway** – Handles authentication & request routing.  
-2. **User Service** – Manages riders & drivers.  
-3. **Ride Matching Service** – Assigns nearest driver using a geospatial index.  
-4. **Real-Time Tracking (WebSocket)** – Streams driver & ride updates.  
-5. **Pricing Engine** – Calculates ride fare dynamically.  
-6. **Payment Service** – Processes transactions via Stripe, PayPal, etc.  
-7. **Notification Service** – Sends ride updates via push notifications.  
+List listLichKham: Danh sách các phiếu hẹn/dịch vụ khám bệnh bao gồm các trường dữ liệu: mã phiếu, tên dịch vụ (xét nghiệm, siêu âm...), số lượng, phòng ban và giờ hẹn.
 
----
+4.3. Cấu trúc giao diện trong hàm build
+Giao diện được thiết kế khoa học với hai khối dữ liệu chính:
 
-## 7️⃣ **Key Issues & Solutions**  
+Khối thông tin bệnh nhân: Sử dụng Container với BoxDecoration để tạo khung nổi bật, thông tin hiển thị qua các Row chứa Icon và Text.
 
-### **1. Real-time Location Updates**
-🔹 **Challenge**: How to efficiently update and retrieve driver locations?  
-✅ **Solution**:  
-- Use **Redis with GeoHash** for fast location indexing.  
-- WebSockets for **real-time updates**.  
+Khối danh sách lịch khám: Sử dụng ListView hoặc vòng lặp để render các dòng dữ liệu. Mỗi dòng là một Row chia theo tỷ lệ (dùng Expanded) để tạo thành bảng dữ liệu chuyên nghiệp.
 
----
+5. Cấu trúc thư mục dự án
+Plaintext
+CLINIC_AI_MANAGER/
+├── lib/
+│   └── main.dart        # File chính chứa biến, dữ liệu và UI bài 2
+├── assets/              # Hình ảnh và logo phòng khám (nếu có)
+├── pubspec.yaml         # Quản lý dependency Flutter
+└── README.md            # Tài liệu hướng dẫn dự án
+6. Hướng dẫn cài đặt và khởi chạy
+Để chạy dự án này trên máy địa phương hoặc trình giả lập, thực hiện các bước sau:
 
-### **2. Ride Matching Algorithm**  
-🔹 **Challenge**: How to quickly match a rider with the nearest driver?  
-✅ **Solution**:  
-- Use a **QuadTree or KD-Tree** for fast geospatial lookups.  
-- **Redis GeoIndex** for quick nearest-driver searches.  
+Bước 1: Cài đặt các gói phụ thuộc
 
----
+Bash
+flutter pub get
+Bước 2: Kiểm tra kết nối thiết bị
 
-### **3. Surge Pricing Calculation**  
-🔹 **Challenge**: How to dynamically calculate ride fares?  
-✅ **Solution**:  
-- Use **Kafka or SQS** to stream demand data in real-time.  
-- Use **machine learning models** to predict demand spikes.  
+Bash
+flutter devices
+Bước 3: Chạy ứng dụng
 
----
+Bash
+flutter run
+7. Đánh giá kết quả đạt được
+✅ Hoàn thành khai báo và sử dụng biến đa kiểu dữ liệu (String, int).
 
-### **4. Payment Processing & Fraud Prevention**  
-🔹 **Challenge**: How to handle millions of transactions securely?  
-✅ **Solution**:  
-- Use **tokenized payments** with PCI-compliant gateways.  
-- Implement **fraud detection models** to flag suspicious activity.  
+✅ Xây dựng thành công bộ dữ liệu mẫu bằng List và Map.
 
----
+✅ Giao diện hiển thị trực quan, phân tách rõ ràng giữa thông tin hành chính và danh mục chuyên môn.
 
-### **5. High Availability & Scalability**  
-🔹 **Challenge**: How to ensure the system runs 24/7 with minimal downtime?  
-✅ **Solution**:  
-- **Multi-region AWS deployment** for redundancy.  
-- **Load balancers (ALB/Nginx)** to distribute traffic.  
-- **Microservices architecture** for modular scalability.  
-
----
+✅ Tuân thủ các nguyên tắc thiết kế UI hiện đại (sử dụng màu sắc hài hòa, bố cục cân đối).
