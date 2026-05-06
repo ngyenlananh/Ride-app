@@ -60,9 +60,12 @@ Plaintext
 
  ┣ 📂 lib
  
- ┃ ┗ 📜 main.dart    # 🧩 File thực thi chính (Biến, Dữ liệu, UI)
+ ┃ ┗ 📜 main.dart  # 🧩 File thực thi chính (Biến, Dữ liệu, UI)
+ 
  ┣ 📂 assets              # 🖼️ Tài nguyên hình ảnh, Icons
+ 
  ┣ 📜 pubspec.yaml        # ⚙️ Cấu hình Dependency
+ 
  ┗ 📜 README.md           # 📖 Tài liệu hướng dẫn dự án
  
 **🚀 HƯỚNG DẪN KHỞI CHẠY**
