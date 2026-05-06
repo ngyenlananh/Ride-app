@@ -14,7 +14,7 @@
 
 🆔 Quang 
 
-**🎯 MỤC TIÊU BÀI THỰC HÀNH SỐ 02**
+**🎯 MỤC TIÊU BÀI **
 
 Dự án tập trung vào việc làm chủ các kỹ thuật xử lý dữ liệu nền tảng trong Flutter & Dart:
 
@@ -82,7 +82,7 @@ flutter devices
 
 3. **Chạy ứng dụng:**
    ```bash
-   flutter run
+   flutter run -d edge 
    
 **📊 KẾT QUẢ ĐẠT ĐƯỢC**
 
