@@ -1,81 +1,18 @@
-🏥 CLINIC AI MANAGER - PHẦN MỀM QUẢN LÝ PHÒNG KHÁM THÔNG MINH
-1. Tổng quan dự án
-CLINIC AI MANAGER là hệ thống quản lý phòng khám tích hợp trí tuệ nhân tạo, giúp tối ưu hóa quy trình tiếp đón bệnh nhân, sắp xếp lịch khám và hỗ trợ chẩn đoán. Dự án được thực hiện bởi Nhóm 03 lớp N03 - Đại học Phenikaa.
-
-2. Thông tin nhóm thực hiện
-Lớp: N03 - Trường Đại học Phenikaa.
-
-Nhóm: 03.
-
-Thành viên:
-
-Nguyễn Thị Lan Anh (Trưởng nhóm - SV ngành Công nghệ thông tin).
-
-Dương Kim Chi.
-
-Quang.
-
-3. Mục tiêu bài thực hành số 02
-Trọng tâm của giai đoạn này là xây dựng nền tảng dữ liệu tĩnh và giao diện hiển thị cơ bản trong Flutter:
-
-Quản lý biến: Khai báo và sử dụng các kiểu dữ liệu cơ bản trong main.dart.
-
-Cấu trúc dữ liệu: Sử dụng Collections (List, Map) để tổ chức dữ liệu bệnh nhân và lịch khám.
-
-Xây dựng giao diện (UI): Hiển thị dữ liệu từ Collections lên màn hình ứng dụng thông qua các Flutter Widgets như Column, Row, Container, và Text.
-
-4. Chi tiết kỹ thuật triển khai
-4.1. Khai báo biến (Variables)
-Hệ thống sử dụng các biến định danh cơ bản để mô tả ngữ cảnh phòng khám:
-
-tenPhongKham: Tên đơn vị quản lý.
-
-nhomThucHien: Thông tin nhóm phát triển.
-
-idBacSi, tenBacSi, chuyenKhoa: Thông tin định danh nhân sự trực ca.
-
-4.2. Quản lý dữ liệu bằng Collections
-Dữ liệu được tổ chức để mô phỏng thực tế hoạt động của phòng khám:
-
-Map thongTinBenhNhan: Chứa thông tin chi tiết của một bệnh nhân đang được xử lý (id, tên, tình trạng lâm sàng, và kết quả chẩn đoán từ AI).
-
-List listLichKham: Danh sách các phiếu hẹn/dịch vụ khám bệnh bao gồm các trường dữ liệu: mã phiếu, tên dịch vụ (xét nghiệm, siêu âm...), số lượng, phòng ban và giờ hẹn.
-
-4.3. Cấu trúc giao diện trong hàm build
-Giao diện được thiết kế khoa học với hai khối dữ liệu chính:
-
-Khối thông tin bệnh nhân: Sử dụng Container với BoxDecoration để tạo khung nổi bật, thông tin hiển thị qua các Row chứa Icon và Text.
-
-Khối danh sách lịch khám: Sử dụng ListView hoặc vòng lặp để render các dòng dữ liệu. Mỗi dòng là một Row chia theo tỷ lệ (dùng Expanded) để tạo thành bảng dữ liệu chuyên nghiệp.
-
-5. Cấu trúc thư mục dự án
-Plaintext
-CLINIC_AI_MANAGER/
-├── lib/
-│   └── main.dart        # File chính chứa biến, dữ liệu và UI bài 2
-├── assets/              # Hình ảnh và logo phòng khám (nếu có)
-├── pubspec.yaml         # Quản lý dependency Flutter
-└── README.md            # Tài liệu hướng dẫn dự án
-6. Hướng dẫn cài đặt và khởi chạy
-Để chạy dự án này trên máy địa phương hoặc trình giả lập, thực hiện các bước sau:
-
-Bước 1: Cài đặt các gói phụ thuộc
-
-Bash
-flutter pub get
-Bước 2: Kiểm tra kết nối thiết bị
-
-Bash
-flutter devices
-Bước 3: Chạy ứng dụng
-
-Bash
-flutter run
-7. Đánh giá kết quả đạt được
-✅ Hoàn thành khai báo và sử dụng biến đa kiểu dữ liệu (String, int).
-
-✅ Xây dựng thành công bộ dữ liệu mẫu bằng List và Map.
-
-✅ Giao diện hiển thị trực quan, phân tách rõ ràng giữa thông tin hành chính và danh mục chuyên môn.
-
-✅ Tuân thủ các nguyên tắc thiết kế UI hiện đại (sử dụng màu sắc hài hòa, bố cục cân đối).
+🏥 CLINIC AI MANAGER
+🤖HỆ THỐNG QUẢN LÝ PHÒNG KHÁM THÔNG MINH TÍCH HỢP AI
+👨‍ triển khai bởi: NHÓM 03 - LỚP N03 🚀
+📍 Trường Đại học Phenikaa
+👤 Thành viên,       🛠️ Vai trò,        
+Nguyễn Thị Lan Anh,     Developer,
+Dương Kim Chi           Developer,
+Quang                    Developer,
+🎯 MỤC TIÊU BÀI THỰC HÀNH SỐ 02Dự án tập trung vào việc làm chủ các kỹ thuật xử lý dữ liệu nền tảng trong Flutter & Dart:✅ Variables: Quản lý biến đa kiểu dữ liệu (String, int, double).✅ Collections: Tổ chức dữ liệu phức tạp bằng List và Map.✅ UI Rendering: Hiển thị dữ liệu từ Collections lên giao diện người dùng bằng các Widget chuyên dụng.🛠️ CHI TIẾT KỸ THUẬT TRIỂN KHAI1️⃣ Quản lý biến hệ thống 📋Sử dụng các biến để định nghĩa bối cảnh phòng khám và nhân sự:tenPhongKham: Định danh cơ sở y tế.tenBacSi & idBacSi: Thông tin định danh bác sĩ trực ca.chuyenKhoa & phongLamViec: Thông tin vị trí công tác.2️⃣ Cấu trúc dữ liệu Collections 🗄️Dữ liệu được mô phỏng như một hệ thống thực tế:thongTinBenhNhan (Map): Lưu trữ thông tin chi tiết: ID, Tên, Tình trạng lâm sàng, Chẩn đoán AI.listLichKham (List): Danh sách các phiếu chỉ định dịch vụ gồm: Mã phiếu, Tên dịch vụ, Phòng ban, Giờ hẹn.3️⃣ Giao diện người dùng (User Interface) 📱Dữ liệu được render trực quan thông qua các khối:Khối hành chính: Sử dụng Container và Decoration để làm nổi bật thông tin bệnh nhân.Bảng dịch vụ: Sử dụng Row kết hợp Expanded để tạo bố cục cột chuyên nghiệp cho danh sách lịch khám.📂 CẤU TRÚC THƯ MỤC DỰ ÁNPlaintext📂 CLINIC_AI_MANAGER
+ ┣ 📂 lib
+ ┃ ┗ 📜 main.dart         # 🧩 File thực thi chính (Biến, Dữ liệu, UI)
+ ┣ 📂 assets              # 🖼️ Tài nguyên hình ảnh, Icons
+ ┣ 📜 pubspec.yaml        # ⚙️ Cấu hình Dependency
+ ┗ 📜 README.md           # 📖 Tài liệu hướng dẫn dự án
+🚀 HƯỚNG DẪN KHỞI CHẠYBước 1: Cài đặt các thư viện cần thiết:Bashflutter pub get
+Bước 2: Kết nối thiết bị (Máy ảo/Máy thật):Bashflutter devices
+Bước 3: Chạy ứng dụng:Bashflutter run
+📊 KẾT QUẢ ĐẠT ĐƯỢC🌟 Giao diện: Trực quan, hiện đại, phân tách rõ ràng các khu vực chức năng.🌟 Dữ liệu: Quản lý khoa học, dễ dàng mở rộng và bảo trì.🌟 Tư duy: Áp dụng đúng nguyên tắc lập trình hướng đối tượng cơ bản.🔮 HƯỚNG PHÁT TRIỂN TIẾP THEO🔄 Model hóa: Chuyển từ Map sang các Class (Model) để quản lý dữ liệu chặt chẽ hơn.➕ Interaction: Thêm chức năng thêm/xóa bệnh nhân và lịch khám.🔍 Search Filter: Bộ lọc tìm kiếm bệnh nhân theo ID hoặc Tên.
